@@ -30,6 +30,10 @@
 #ifndef FUNCHOOK_H
 #define FUNCHOOK_H 1
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * Only functions with FUNCHOOK_EXPORT are visible from outside of funchook.dll
  * or libfunchook.so. Others are invisible.
@@ -59,6 +63,7 @@ typedef struct funchook funchook_t;
 #define FUNCHOOK_ERROR_MEMORY_ALLOCATION       8 /* memory allocation error */
 #define FUNCHOOK_ERROR_MEMORY_FUNCTION         9 /* other memory function errors */
 #define FUNCHOOK_ERROR_NOT_INSTALLED          10
+#define FUNCHOOK_ERROR_NO_AVAILABLE_REGISTERS 11
 
 /**
  * Create a funchook handle
@@ -118,5 +123,9 @@ FUNCHOOK_EXPORT const char *funchook_error_message(const funchook_t *funchook);
  * @return             error code. one of FUNCHOOK_ERROR_*.
  */
 FUNCHOOK_EXPORT int funchook_set_debug_file(const char *name);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
 
 #endif
